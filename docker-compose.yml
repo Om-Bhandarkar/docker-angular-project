@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  angular-app:
+    image: 10.192.55.10:5001/angular_app:latest
+    container_name: angular_app
+    restart: always
+
+    ports:
+      - "80:80"
+
+    environment:
+      - NODE_ENV=production
+
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
